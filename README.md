@@ -1,6 +1,6 @@
 # Introduction
 
-- Hi, I’m Robert P.G. Jarman @rpgjarman
+- Hi, I’m Robert Perkins Gathinji Jarman @rpgjarman
 - I’m interested in software engineering, cybersecurity, business administration/management, or anything computer science related
 - I’m currently pursuing a Bachelor of Arts degree at Emory University with a major in Computer Science and minor in Business Administration
 - Pronouns: He/Him/His
