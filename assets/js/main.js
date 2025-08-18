@@ -132,21 +132,35 @@ const iconTheme = "uil-sun";
 const selectedTheme = localStorage.getItem("selected-theme");
 const selectedIcon = localStorage.getItem("selected-icon");
 
+// Detect system preference
+const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
 // We obtain the current theme that the interface has by validating the dark-theme class
 const getCurrentTheme = () =>
   document.body.classList.contains(darkTheme) ? "dark" : "light";
 const getCurrentIcon = () =>
   themeButton.classList.contains(iconTheme) ? "uil-moon" : "uil-sun";
 
-// We validate if the user previously chose a topic
+// SYSTEM PREFERENCE + DEFAULT TO DARK - Modified section
 if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+  // If user has a saved preference, use it
   document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
     darkTheme,
   );
   themeButton.classList[selectedIcon === "uil-moon" ? "add" : "remove"](
     iconTheme,
   );
+} else {
+  // NEW: Check system preference, but default to dark if no preference
+  const shouldUseDark = prefersDarkScheme.matches || true; // Force dark as fallback
+  
+  if (shouldUseDark) {
+    document.body.classList.add(darkTheme);
+    themeButton.classList.add(iconTheme);
+    localStorage.setItem("selected-theme", "dark");
+    localStorage.setItem("selected-icon", "uil-sun");
+  }
+  // If system prefers light, it will stay light (default CSS)
 }
 
 // Activate / deactivate the theme manually with the button
